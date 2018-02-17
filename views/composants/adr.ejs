@@ -1,0 +1,28 @@
+<table class="tableau">
+ <tr>
+ <% let ordre = "" %>
+ <% if(ordre == ""|| ordre == "desc") { %>
+ 		<% ordre = "asc" %>
+ <% } else { %>
+ 		<% ordre = "desc" %>
+ <% } %>
+ <% console.log(ordre) %>
+ <th><a href='/trier/id/<%= ordre %>'>ID</a></th>
+ <th><a href='/trier/nom/<%= ordre %>'>Nom</a></th> 
+ <th><a href='/trier/prenom/<%= ordre %>'>Prenom</a></th>
+ <th><a href='/trier/telephone/<%= ordre %>'>Telephone</a></th>
+ <th><a href='/trier/courriel/<%= ordre %>'>Courriel</a></th>
+ <th>Ajouter</th> 
+ </tr>
+ <% adresses.forEach(elm => {%>
+ <tr>
+ <td><%= elm._id %></td>
+ <td contenteditable='true'><%= elm.nom %></td>
+ <td contenteditable='true'><%= elm.prenom %></td>
+ <td contenteditable='true'><%= elm.telephone %></td>
+ <td contenteditable='true'><%= elm.courriel %></td>
+ <td><a href="/detruire/<%= elm._id %>">Delete</a></td>
+ <td><a class='sauver' href="#">Sauver</a></td>
+ </tr>
+ <% }) %>
+ </table>
