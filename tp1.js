@@ -36,12 +36,14 @@ app.get('/membres', function (req, res) {
  }) 
 })
 
-app.get('/profil', function (req, res) {
-   let cursor = db.collection('adresse').find().toArray(function(err, resultat){
+app.get('/profil/:id', function (req, res) {
+	let id = req.params.id 
+	let critere = ObjectID(req.params.id)
+   let cursor = db.collection('adresse').findOne({"_id": critere}).toArray(function(err, resultat){
  if (err) return console.log(err)
  // transfert du contenu vers la vue adresses.ejs (renders)
  // affiche le contenu de la BD
- res.render('adresses.ejs', {adresses: resultat})
+ res.render('profil.ejs', {adresses: resultat})
  }) 
 })
 
