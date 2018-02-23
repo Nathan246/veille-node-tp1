@@ -36,9 +36,7 @@ app.get('/membres', function (req, res) {
  }) 
 })
 
-app.get('/profil/:id', function (req, res) {
-	let id = req.params.id 
-	let critere = ObjectID(req.params.id)
+app.get('/recherche', function (req, res) {
    let cursor = db.collection('adresse').findOne({"_id": critere}).toArray(function(err, resultat){
  if (err) return console.log(err)
  // transfert du contenu vers la vue adresses.ejs (renders)
