@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
+const util = require("util");
+const peupler = require("./mes_modules/peupler")
 app.use(express.static('public'));
 /* on associe le moteur de vue au module «ejs» */
 const bodyParser= require('body-parser')
@@ -38,22 +40,9 @@ app.get('/formulaire', (req, res) => {
  console.log('la route get / = ' + req.url)
  res.sendFile(__dirname + "/public/html/forme.htm")
 })
-/*
-app.get('/detruire/:telephone', (req, res) => {
-	db.collection('adresse').findOneAndDelete( {'telephone': req.params.telephone} ,(err, resultat) => {
-		if (err) return res.send(500, err)
-			var cursor = db.collection('adresse').find().toArray(function(err, resultat){
-		if (err) return console.log(err)
-			res.render('adresses.ejs', {adresses: resultat})
-		})
-	}) 
-})
-*/
+
 app.get('/detruire/:id', (req, res) => {
  var id = req.params.id 
-// var critere = 'ObjectId("58bae3feaf5a674b240cfe53")'
-// 58bae3feaf5a674b240cfe53
-// var critere = ObjectID.createFromHexString(id)
 var critere = ObjectID(req.params.id)
 console.log(critere)
 
@@ -65,14 +54,28 @@ if (err) return console.log(err)
  })
 })
 
+app.get('/vider', (req, res) => {
+ db.collection('adresse').remove({}, (err, resultat) => {
+
+if (err) return console.log(err)
+ res.redirect('/membres')  // redirige vers la route qui affiche la collection
+ })
+})
+
 app.get('/trier/:cle/:ordre', (req, res) => {
 	let cle = req.params.cle
 	let ordre = (req.params.ordre == 'asc' ? 1 : -1)
 	let cursor = db.collection('adresse').find().sort(cle,ordre).toArray(function(err, resultat){
-		ordre = -ordre
-		//console.log(req.url.split("/")[3])
-		//console.log(req.params.ordre);
+		ordre = (req.params.ordre == 'asc' ? 'desc' : 'asc')
 		res.render('adresses.ejs', {adresses: resultat, cle, ordre })
+	})
+})
+
+app.get('/peupler', (req, res) => {
+	db.collection('adresse').insertMany(peupler(), (err, result) => {
+	if (err) return console.log(err)
+		console.log('sauvegarder dans la BD')
+		res.redirect('/membres')
 	})
 })
 
@@ -87,7 +90,6 @@ app.post('/modifier', (req, res) => {
 			telephone: req.body.telephone,
 			courriel: req.body.courriel
 		}
-		var util = require("util");
  		console.log('util = ' + util.inspect(oModif));
  	} else {
 		console.log('insert')
@@ -105,12 +107,3 @@ app.post('/modifier', (req, res) => {
 		res.redirect('/membres')
 	})
 })
-
-/*app.post('/adresse', (req, res) => {
- db.collection('adresse').save(req.body, (err, result) => {
- if (err) return console.log(err)
- console.log('sauvegarder dans la BD')
- res.redirect('/membres')
- })
-
-})*/

@@ -24,6 +24,7 @@
  let nom = laLigne.children[1].innerHTML
  let prenom = laLigne.children[2].innerHTML
  let telephone = laLigne.children[3].innerHTML
+ let courriel = laLigne.children[4].innerHTML
 
 let elmForm = document.getElementById('mon_formulaire')
  console.log(elmForm.tagName)
@@ -32,10 +33,28 @@ let elmForm = document.getElementById('mon_formulaire')
  elmInput[1].value = nom
  elmInput[2].value = prenom
  elmInput[3].value = telephone
+ elmInput[4].value = courriel
 
 elmForm.submit()
 
  })
  } 
+
+ let elmTrier = document.getElementsByClassName("trier");
+	 let ordre = window.location.href.split("/")[5];
+	 //console.log(ordre)
+	 if (ordre != null) {
+		 for (elm of elmTrier) {
+		 	if (ordre == "asc") {
+		 		ordre = "desc";
+		 	} else {
+		 		ordre = "asc"
+		 	}
+		 }
+		 for (let i = 0; i < elmTrier.length; i++) {
+		 	elmTrier[i].href = "/trier/" + elmTrier[i].href.split("/")[4] + "/" + ordre
+		 	console.log(elmTrier[i].href)
+		 }
+	 }
 </script>
 </html>
