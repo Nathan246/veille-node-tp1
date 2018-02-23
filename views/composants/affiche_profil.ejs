@@ -1,10 +1,12 @@
-<ul>
- <% adresses.forEach(elm => {%>
- <li><%= elm.nom %></li>
- <li><%= elm.prenom %></li>
- <li><%= elm.telephone %></li>
- <li><%= elm.courriel %></li>
- <li><%= elm.ville %></li>
- <li><%= elm.interets %></li>
- <% }) %>
- </ul>
+<div id="profil">
+	<h2>Profil</h2>
+	<ul>
+		 <% adresses.forEach(elm => {%>
+			 <li>Nom : <%= elm.prenom %> <%= elm.nom %></li>
+			 <li>Téléphone : <%= elm.telephone %></li>
+			 <li>Courriel : <%= elm.courriel %></li>
+			 <li>Habite à : <%= elm.ville %></li>
+			 <li>Intérêts : <%= elm.interets %></li>
+		 <% }) %>
+	 </ul>
+ </div>

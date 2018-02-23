@@ -115,11 +115,12 @@ app.post('/modifier', (req, res) => {
 })
 
 app.post('/rechercher', function (req, res) {
+	let regex = new RegExp(".*" + req.body.recherche + ".*", "i");
    	db.collection('adresse').find({$or: [
-   		{prenom: req.body.recherche},
-		{nom: req.body.recherche},
-		{telephone: req.body.recherche},
-		{courriel: req.body.recherche}
+   		{prenom: {$regex: regex}},
+		{nom: {$regex: regex}},
+		{telephone: {$regex: regex}},
+		{courriel: {$regex: regex}}
    	]}).toArray(function(err, resultat){
  if (err) return console.log(err)
  // transfert du contenu vers la vue adresses.ejs (renders)
