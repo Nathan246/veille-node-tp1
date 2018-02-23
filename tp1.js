@@ -12,7 +12,7 @@ app.set('view engine', 'ejs'); // générateur de template
 // Utilisation de bodyParser
 app.use(bodyParser());
 
-var db // variable qui contiendra le lien sur la BD
+let db // letiable qui contiendra le lien sur la BD
 
 MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) => {
  if (err) return console.log(err)
@@ -36,8 +36,10 @@ app.get('/membres', function (req, res) {
  }) 
 })
 
-app.get('/profil', function (req, res) {
-   let cursor = db.collection('adresse').find().toArray(function(err, resultat){
+app.get('/profil/:id', function (req, res) {
+	let id = req.params.id 
+let critere = ObjectID(req.params.id)
+   let cursor = db.collection('adresse').find({"_id": critere}).toArray(function(err, resultat){
  if (err) return console.log(err)
  // transfert du contenu vers la vue adresses.ejs (renders)
  // affiche le contenu de la BD
@@ -46,8 +48,8 @@ app.get('/profil', function (req, res) {
 })
 
 app.get('/detruire/:id', (req, res) => {
- var id = req.params.id 
-var critere = ObjectID(req.params.id)
+ let id = req.params.id 
+let critere = ObjectID(req.params.id)
 console.log(critere)
 
 console.log(id)
@@ -87,7 +89,7 @@ app.post('/modifier', (req, res) => {
 	console.log('req.body' + req.body)
  	if (req.body['_id'] != "") { 
 		console.log('sauvegarde') 
-		var oModif = {
+		let oModif = {
 			"_id": ObjectID(req.body['_id']), 
 			nom: req.body.nom,
 			prenom: req.body.prenom, 
@@ -98,7 +100,7 @@ app.post('/modifier', (req, res) => {
  	} else {
 		console.log('insert')
 		console.log(req.body)
-		var oModif = {
+		let oModif = {
 			prenom: req.body.prenom, 
 			nom: req.body.nom,
 			telephone: req.body.telephone,
