@@ -4,9 +4,10 @@ const tabVille = [
 	"Ottawa",
 	"Laval",
 	"Paris",
-	"Bruxelle",
+	"Bruxelles",
 	"Gatineau",
 	"Gaspé",
+	"Vancouver",
 	"Calgary",
 	"Saskatchewan"
 ]
@@ -24,6 +25,8 @@ const tabPrenom = [
 	"Marc",
 	"Guy",
 	"Jean-Marc",
+	"Marc-André",
+	"Yannick",
 	"François",
 	"Mathilde"
 ]
