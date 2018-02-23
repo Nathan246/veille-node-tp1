@@ -36,9 +36,13 @@ app.get('/membres', function (req, res) {
  }) 
 })
 
-app.get('/formulaire', (req, res) => {
- console.log('la route get / = ' + req.url)
- res.sendFile(__dirname + "/public/html/forme.htm")
+app.get('/profil', function (req, res) {
+   let cursor = db.collection('adresse').find().toArray(function(err, resultat){
+ if (err) return console.log(err)
+ // transfert du contenu vers la vue adresses.ejs (renders)
+ // affiche le contenu de la BD
+ res.render('adresses.ejs', {adresses: resultat})
+ }) 
 })
 
 app.get('/detruire/:id', (req, res) => {
