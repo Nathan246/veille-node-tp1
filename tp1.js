@@ -87,24 +87,29 @@ app.get('/peupler', (req, res) => {
 
 app.post('/modifier', (req, res) => {
 	console.log('req.body' + req.body)
+	let oModif = ""
  	if (req.body['_id'] != "") { 
 		console.log('sauvegarde') 
-		let oModif = {
+		oModif = {
 			"_id": ObjectID(req.body['_id']), 
 			nom: req.body.nom,
 			prenom: req.body.prenom, 
 			telephone: req.body.telephone,
-			courriel: req.body.courriel
+			courriel: req.body.courriel,
+			ville: req.body.ville,
+			interets: req.body.interets
 		}
  		console.log('util = ' + util.inspect(oModif));
  	} else {
 		console.log('insert')
 		console.log(req.body)
-		let oModif = {
+		oModif = {
 			prenom: req.body.prenom, 
 			nom: req.body.nom,
 			telephone: req.body.telephone,
-			courriel: req.body.courriel
+			courriel: req.body.courriel,
+			ville: req.body.ville,
+			interets: req.body.interets
 		}
 	}
 	db.collection('adresse').save(oModif, (err, result) => {

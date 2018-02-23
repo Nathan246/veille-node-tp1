@@ -32,14 +32,17 @@ const peupler = () => {
 		let pVille = Math.floor(Math.random() * maxVille)
 		let pInterets1 = Math.floor(Math.random() * maxInterets)
 		let pInterets2 = Math.floor(Math.random() * maxInterets)
-		let pInterets3 = Math.floor(Math.random() * maxInterets)
+		
+		if(pInterets2 == pInterets1) {
+			pInterets2 = Math.floor(Math.random() * maxInterets)
+		}
 
 		let nom = tableau.tabNom[pNom]
 		let prenom = tableau.tabPrenom[pPrenom]
 		let telephone = tableau.tabTelephone[pTelephone]
 		let courriel = tableau.tabPrenom[pPrenom] + tableau.tabNom[pNom] + tableau.tabCourriel[pCourriel]
 		let ville = tableau.tabVille[pVille]
-		let interets = tableau.tabInterets[pInterets1] + ", " + tableau.tabInterets[pInterets2] + ", " + tableau.tabInterets[pInterets3]
+		let interets = tableau.tabInterets[pInterets1] + ", " + tableau.tabInterets[pInterets2]
 
 		oPeuple[i] = {
 			prenom: prenom, 
