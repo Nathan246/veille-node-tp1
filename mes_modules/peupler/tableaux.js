@@ -10,13 +10,6 @@ const tabVille = [
 	"Calgary",
 	"Saskatchewan"
 ]
-const tabDomaine = [
-	"gmail.com",
-	"videotron.ca",
-	"bell.ca",
-	"yahoo.com",
-	"hotmail.com"
-]
 const tabNom = [
 	"Vallée",
 	"Thériault",
@@ -49,14 +42,23 @@ const tabCourriel = [
 	"@gmail.com",
 	"@yahoo.com",
 ]
+const tabInterets = [
+	"Courir",
+	"Pêcher",
+	"Faire du vélo",
+	"Jouer à des jeux-vidéo",
+	"Regarder des films",
+	"Dormir",
+	"Programmer"
+]
 
 const tableau = {
-	tabVille : tabVille,
-	tabDomaine : tabDomaine,
 	tabNom : tabNom,
 	tabPrenom : tabPrenom,
 	tabTelephone : tabTelephone,
-	tabCourriel : tabCourriel
+	tabCourriel : tabCourriel,
+	tabVille : tabVille,
+	tabInterets : tabInterets
 }
 
 /*module.exports.tabVille = tabVille

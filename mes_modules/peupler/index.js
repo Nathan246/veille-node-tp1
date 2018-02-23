@@ -6,7 +6,7 @@ const tableau = require("./tableaux.js")
 console.log(tableau.tabDomaine)*/
 
 const maxVille = tableau.tabVille.length
-const maxDomaine = tableau.tabDomaine.length
+/*const maxDomaine = tableau.tabDomaine.length*/
 
 const maxNom = tableau.tabNom.length
 const maxPrenom = tableau.tabPrenom.length

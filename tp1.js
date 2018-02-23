@@ -36,14 +36,6 @@ app.get('/membres', function (req, res) {
  }) 
 })
 
-app.get('/recherche', function (req, res) {
-   let cursor = db.collection('adresse').findOne({"_id": critere}).toArray(function(err, resultat){
- if (err) return console.log(err)
- // transfert du contenu vers la vue adresses.ejs (renders)
- // affiche le contenu de la BD
- res.render('profil.ejs', {adresses: resultat})
- }) 
-})
 
 app.get('/detruire/:id', (req, res) => {
  var id = req.params.id 
@@ -110,4 +102,18 @@ app.post('/modifier', (req, res) => {
 		console.log('sauvegarder dans la BD')
 		res.redirect('/membres')
 	})
+})
+
+app.post('/rechercher', function (req, res) {
+   	db.collection('adresse').find({$or: [
+   		{prenom: req.body.recherche},
+		{nom: req.body.recherche},
+		{telephone: req.body.recherche},
+		{courriel: req.body.recherche}
+   	]}).toArray(function(err, resultat){
+ if (err) return console.log(err)
+ // transfert du contenu vers la vue adresses.ejs (renders)
+ // affiche le contenu de la BD
+ res.render('adresses.ejs', {adresses: resultat})
+ }) 
 })
