@@ -1,12 +1,12 @@
 <div id="profil">
-	<h2>Profil</h2>
-	<ul>
+	<h2>Profil de <%= adresses[0].prenom %></h2>
+	<table class='tableau'>
 		 <% adresses.forEach(elm => {%>
-			 <li>Nom : <%= elm.prenom %> <%= elm.nom %></li>
-			 <li>Téléphone : <%= elm.telephone %></li>
-			 <li>Courriel : <%= elm.courriel %></li>
-			 <li>Habite à : <%= elm.ville %></li>
-			 <li>Intérêts : <%= elm.interets %></li>
+			 <tr><td>Nom</td><td> <%= elm.prenom %> <%= elm.nom %></td></tr>
+			 <tr><td>Téléphone</td><td> <%= elm.telephone %></td></tr>
+			 <tr><td>Courriel</td><td> <%= elm.courriel %></td></tr>
+			 <tr><td>Habite à</td><td> <%= elm.ville %></td></tr>
+			 <tr><td>Intérêts</td><td> <%= elm.interets %></td></tr>
 		 <% }) %>
-	 </ul>
+	 </table>
  </div>
