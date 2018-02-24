@@ -4,6 +4,14 @@ table, td, th {
 	margin: 0 auto;
 }
 
+@media screen and (max-width: 1225px) {
+	td, th {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+	}
+}
+
 table * {
 	padding: 15px;
 }
@@ -11,10 +19,6 @@ table * {
 table {
 	margin-top: 20px;
 }
-
-/*td {
-	background-color: #B02D2B;
-}*/
 
 tr:nth-child(even) {
     background-color: #B02D2B;
